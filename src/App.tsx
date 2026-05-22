@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { formatUnits } from "ethers";
 import { useWallet } from "./hooks/useWallet";
 import { usePresale } from "./hooks/usePresale";
-import { CHAIN_NAME } from "./config/contracts";
+import { CHAIN_NAME, USDT_DECIMALS } from "./config/contracts";
 import { formatAmount, formatTimestamp, shortAddress } from "./lib/format";
 import WhitepaperPage from "./components/WhitepaperPage";
 import StakingPage from "./components/StakingPage";
@@ -18,7 +18,7 @@ export default function App() {
 
   const publicPrice = useMemo(() => {
     try {
-      return Number(formatUnits(snapshot.publicSaleTokenPrice, 6)).toFixed(4);
+      return Number(formatUnits(snapshot.publicSaleTokenPrice, USDT_DECIMALS)).toFixed(4);
     } catch {
       return "0.04";
     }
@@ -26,7 +26,7 @@ export default function App() {
 
   const raisedPct = useMemo(() => {
     const hardCap = 1_456_000; // 7% of 51M at $0.04
-    const raised = Number(formatUnits(snapshot.totalPublicUsdtRaised, 6));
+    const raised = Number(formatUnits(snapshot.totalPublicUsdtRaised, USDT_DECIMALS));
     if (!Number.isFinite(raised) || hardCap <= 0) return 0;
     return Math.max(0, Math.min(100, (raised / hardCap) * 100));
   }, [snapshot.totalPublicUsdtRaised]);
@@ -101,7 +101,7 @@ export default function App() {
             </div>
             <div className="text-right">
               <span className="small-head">PUBLIC RAISED</span>
-              <div className="big-green">{formatAmount(snapshot.totalPublicUsdtRaised, 6, 2)} USDT</div>
+              <div className="big-green">{formatAmount(snapshot.totalPublicUsdtRaised, USDT_DECIMALS, 2)} USDT</div>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function App() {
 
         <div className="presale-cards">
           <div className="pcard"><span className="pcard-val">${publicPrice}</span><span className="pcard-label">Public Price</span></div>
-          <div className="pcard"><span className="pcard-val">{formatAmount(snapshot.totalUsdtRaised, 6, 2)}</span><span className="pcard-label">Total USDT Raised</span></div>
+          <div className="pcard"><span className="pcard-val">{formatAmount(snapshot.totalUsdtRaised, USDT_DECIMALS, 2)}</span><span className="pcard-label">Total USDT Raised</span></div>
           <div className="pcard"><span className="pcard-val">{formatAmount(snapshot.totalPresaleSold, 18, 0)}</span><span className="pcard-label">Public Tokens Sold</span></div>
           <div className="pcard"><span className="pcard-val">{formatAmount(snapshot.totalPrivateSold, 18, 0)}</span><span className="pcard-label">Private Tokens Sold</span></div>
         </div>
@@ -157,8 +157,8 @@ export default function App() {
           <div className="action-col">
             <div className="card-title">Your Record</div>
             <div className="record-grid">
-              <div><span>Public Invested</span><strong>{formatAmount(record.publicUsdtInvested, 6, 2)} USDT</strong></div>
-              <div><span>Private Invested</span><strong>{formatAmount(record.privateUsdtInvestedAmount, 6, 2)} USDT</strong></div>
+              <div><span>Public Invested</span><strong>{formatAmount(record.publicUsdtInvested, USDT_DECIMALS, 2)} USDT</strong></div>
+              <div><span>Private Invested</span><strong>{formatAmount(record.privateUsdtInvestedAmount, USDT_DECIMALS, 2)} USDT</strong></div>
               <div><span>Total Purchased</span><strong>{formatAmount(record.totalTokensPurchased, 18, 2)}</strong></div>
               <div><span>Total Claimed</span><strong>{formatAmount(record.totalTokensClaimed, 18, 2)}</strong></div>
               <div><span>Claimable Now</span><strong>{formatAmount(record.claimableNow, 18, 4)}</strong></div>
@@ -175,7 +175,7 @@ export default function App() {
           <div className="owner-panel">
             <div className="card-title">Owner Controls</div>
             <div className="owner-grid">
-              <input className="input" placeholder="Public price in 6 decimals (40000)" value={priceInput} onChange={(e) => setPriceInput(e.target.value)} />
+              <input className="input" placeholder="Public price in USDT (0.04)" value={priceInput} onChange={(e) => setPriceInput(e.target.value)} />
               <button
                 className="btn-primary"
                 disabled={txLoading || wrongNetwork || priceInput.length === 0}

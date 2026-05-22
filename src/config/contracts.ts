@@ -8,5 +8,5 @@ export const USDT_ADDRESS = import.meta.env.VITE_USDT_ADDRESS || "";
 export const TREASURY_ADDRESS = import.meta.env.VITE_TREASURY_ADDRESS || "";
 export const BLOCK_EXPLORER = import.meta.env.VITE_BLOCK_EXPLORER || "";
 
-export const USDT_DECIMALS = 6;
+export const USDT_DECIMALS = 18;
 export const TOKEN_DECIMALS = 18;

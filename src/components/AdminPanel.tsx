@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type Props = {
   disabled: boolean;
-  onSetPrice: (priceUsdt6: string) => Promise<void>;
+  onSetPrice: (priceUsdt: string) => Promise<void>;
   onRecordPrivate: (buyer: string, usdtAmount: string) => Promise<void>;
 };
 
@@ -16,11 +16,11 @@ export default function AdminPanel({ disabled, onSetPrice, onRecordPrivate }: Pr
       <h2>Owner Controls</h2>
 
       <div className="stack">
-        <label className="label">Set Public Sale Price (USDT 6-decimal units)</label>
+        <label className="label">Set Public Sale Price (USDT)</label>
         <div className="row">
           <input
             className="input"
-            placeholder="40000 = $0.04"
+            placeholder="0.04"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />

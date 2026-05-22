@@ -12,7 +12,7 @@ export default function SaleSummary({ data }: Props) {
       <h2>Sale Status</h2>
       <div className="grid two">
         <p>Sale Start: <strong>{formatTimestamp(data.startTime)}</strong></p>
-        <p>Public Price (USDT 6-dec): <strong>{data.publicSaleTokenPrice.toString()}</strong></p>
+        <p>Public Price: <strong>{formatAmount(data.publicSaleTokenPrice, USDT_DECIMALS, 4)} USDT</strong></p>
         <p>Sale Active: <strong>{data.saleActive ? "Yes" : "No"}</strong></p>
         <p>Claim Enabled: <strong>{data.claimEnabled ? "Yes" : "No"}</strong></p>
         <p>Public Raised: <strong>{formatAmount(data.totalPublicUsdtRaised, USDT_DECIMALS, 2)} USDT</strong></p>

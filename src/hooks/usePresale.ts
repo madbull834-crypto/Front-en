@@ -148,11 +148,11 @@ export function usePresale(account: string) {
     }
   }, [refresh]);
 
-  const setPublicPrice = useCallback(async (priceUsdt6: string) => {
+  const setPublicPrice = useCallback(async (priceUsdt: string) => {
     setTxLoading(true);
     setError("");
     try {
-      const price = BigInt(priceUsdt6);
+      const price = parseUnits(priceUsdt, USDT_DECIMALS);
       const presale = await getPresaleWriteContract();
       const tx = await presale.setPublicSaleTokenPrice(price);
       await tx.wait();
