@@ -16,6 +16,11 @@ function formatBps(bps: bigint) {
   return `${(Number(bps) / 100).toFixed(2)}%`;
 }
 
+const DISPLAY_DAILY_ROI_BPS = 70n;
+const DISPLAY_DAILY_ROI = formatBps(DISPLAY_DAILY_ROI_BPS);
+const DISPLAY_DAILY_ROI_LABEL = `Up to ${DISPLAY_DAILY_ROI}`;
+const DISPLAY_MONTHLY_ROI = "21.00%";
+
 function depositStatus(position: StakingPosition) {
   if (position.closed) return "Closed";
   if (Date.now() >= Number(position.endTime) * 1000) return "Matured";
@@ -108,7 +113,7 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
     [stakingAccount.positions]
   );
 
-  const dailyEstimate = estimateDailyRoi(stakeAmount, snapshot.dailyRoiBps);
+  const dailyEstimate = estimateDailyRoi(stakeAmount, DISPLAY_DAILY_ROI_BPS);
 
   const blockExplorerContractUrl =
     BLOCK_EXPLORER && STAKING_ADDRESS
@@ -151,9 +156,9 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
       <main className="page-shell">
         <section className="page-hero">
           <div className="section-label">Staking Program</div>
-          <h1 className="section-title">Stake USDT And Track <span>Every Position</span></h1>
+          <h1 className="section-title">Stake USDT and Maximize <span>Your Returns</span></h1>
           <p className="section-text">
-            Earn {formatBps(snapshot.dailyRoiBps)} daily ROI on your USDT. Deposits run for a fixed term — claim ROI any time and withdraw your principal at maturity.
+            Earn {DISPLAY_DAILY_ROI_LABEL} daily ROI and {DISPLAY_MONTHLY_ROI} monthly ROI on your USDT. Deposits run for a fixed term — claim ROI any time and withdraw your principal at maturity.
           </p>
           <div className="btn-group">
             <button className="btn-primary" onClick={() => window.scrollTo({ top: 540, behavior: "smooth" })}>
@@ -186,8 +191,12 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
               <span className="pcard-label">Deposits</span>
             </div>
             <div className="pcard">
-              <span className="pcard-val">{formatBps(snapshot.dailyRoiBps)}</span>
+              <span className="pcard-val">{DISPLAY_DAILY_ROI_LABEL}</span>
               <span className="pcard-label">Daily ROI</span>
+            </div>
+            <div className="pcard">
+              <span className="pcard-val">{DISPLAY_MONTHLY_ROI}</span>
+              <span className="pcard-label">Monthly ROI</span>
             </div>
             <div className="pcard">
               <span className="pcard-val">{formatAmount(snapshot.minDeposit, USDT_DECIMALS, 0)} USDT</span>
