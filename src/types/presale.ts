@@ -26,3 +26,12 @@ export type UserRecord = {
   totalTokensClaimed: bigint;
   claimableNow: bigint;
 };
+
+export type PublicInvestorRecord = {
+  address: string;
+  publicUsdtInvested: bigint;
+  publicTokensPurchased: bigint;
+  totalTokensPurchased: bigint;
+  totalTokensClaimed: bigint;
+  claimableNow: bigint;
+};

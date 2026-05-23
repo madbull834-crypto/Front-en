@@ -1,7 +1,7 @@
 import { parseUnits } from "ethers";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MADBULL_ADDRESS, PRESALE_ADDRESS, USDT_DECIMALS } from "../config/contracts";
-import type { SaleSnapshot, UserRecord } from "../types/presale";
+import type { PublicInvestorRecord, SaleSnapshot, UserRecord } from "../types/presale";
 import { getMadbullReadContract, getPresaleReadContract, getPresaleWriteContract, getUsdtWriteContract } from "../web3/clients";
 
 const EMPTY_SNAPSHOT: SaleSnapshot = {
@@ -30,6 +30,7 @@ const EMPTY_RECORD: UserRecord = {
 export function usePresale(account: string) {
   const [snapshot, setSnapshot] = useState<SaleSnapshot>(EMPTY_SNAPSHOT);
   const [record, setRecord] = useState<UserRecord>(EMPTY_RECORD);
+  const [publicInvestors, setPublicInvestors] = useState<PublicInvestorRecord[]>([]);
   const [owner, setOwner] = useState("");
   const [madbullBalance, setMadbullBalance] = useState(0n);
   const [loading, setLoading] = useState(false);
@@ -73,6 +74,23 @@ export function usePresale(account: string) {
         totalPrivateSold
       });
       setOwner(ownerAddr);
+
+      if (account && ownerAddr.toLowerCase() === account.toLowerCase()) {
+        const publicInvestorRecords = await presale.getPublicInvestorRecordsPaginated(0, 100);
+        const investors = publicInvestorRecords[0] as string[];
+        setPublicInvestors(
+          investors.map((address, index) => ({
+            address,
+            publicUsdtInvested: publicInvestorRecords[1][index],
+            publicTokensPurchased: publicInvestorRecords[2][index],
+            totalTokensPurchased: publicInvestorRecords[3][index],
+            totalTokensClaimed: publicInvestorRecords[4][index],
+            claimableNow: publicInvestorRecords[5][index],
+          }))
+        );
+      } else {
+        setPublicInvestors([]);
+      }
 
       if (account) {
         const user = await presale.getUserSaleRecord(account);
@@ -190,6 +208,7 @@ export function usePresale(account: string) {
   return {
     snapshot,
     record,
+    publicInvestors,
     madbullBalance,
     loading,
     txLoading,

@@ -9,7 +9,7 @@ import StakingPage from "./components/StakingPage";
 
 export default function App() {
   const { wallet, connect, wrongNetwork } = useWallet();
-  const { snapshot, record, madbullBalance, loading, txLoading, error, isOwner, refresh, buyPublic, claim, setPublicPrice, recordPrivateInvestment } = usePresale(wallet.account);
+  const { snapshot, record, publicInvestors, madbullBalance, loading, txLoading, error, isOwner, refresh, buyPublic, claim, setPublicPrice, recordPrivateInvestment } = usePresale(wallet.account);
   const [buyAmount, setBuyAmount] = useState("");
   const [priceInput, setPriceInput] = useState("");
   const [privateBuyer, setPrivateBuyer] = useState("");
@@ -200,6 +200,23 @@ export default function App() {
                 Approve + Record Private Investment
               </button>
             </div>
+
+            <div className="card-title mt12">Public Investors</div>
+            {publicInvestors.length === 0 ? (
+              <div className="notice">No public investors recorded yet.</div>
+            ) : (
+              <div className="record-grid">
+                {publicInvestors.map((investor) => (
+                  <div key={investor.address}>
+                    <span>{shortAddress(investor.address)}</span>
+                    <strong>{formatAmount(investor.publicTokensPurchased, 18, 2)} MBL</strong>
+                    <span>{formatAmount(investor.publicUsdtInvested, USDT_DECIMALS, 2)} USDT invested</span>
+                    <span>{formatAmount(investor.totalTokensClaimed, 18, 2)} claimed</span>
+                    <span>{formatAmount(investor.claimableNow, 18, 4)} claimable</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </section>

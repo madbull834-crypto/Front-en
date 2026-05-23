@@ -276,6 +276,19 @@ export const PRESALE_ABI = [
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "investor",
+        "type": "address"
+      }
+    ],
+    "name": "PublicInvestorAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "priceInUsdt",
@@ -585,6 +598,19 @@ export const PRESALE_ABI = [
   {
     "inputs": [
       {
+        "internalType": "address[]",
+        "name": "investors",
+        "type": "address[]"
+      }
+    ],
+    "name": "backfillPublicInvestors",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "uint256",
         "name": "usdtAmount",
         "type": "uint256"
@@ -732,6 +758,105 @@ export const PRESALE_ABI = [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "getPublicInvestorCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "offset",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPublicInvestorRecordsPaginated",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "investors",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "publicUsdtInvestedAmounts",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "publicTokensPurchased",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "totalTokensPurchased",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "totalTokensClaimed",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "claimableNow",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getPublicInvestors",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "offset",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPublicInvestorsPaginated",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "investors",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -822,6 +947,25 @@ export const PRESALE_ABI = [
       }
     ],
     "name": "isPrivateInvestor",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isPublicInvestor",
     "outputs": [
       {
         "internalType": "bool",
