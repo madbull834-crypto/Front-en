@@ -31,6 +31,17 @@ export default function App() {
     return Math.max(0, Math.min(100, (raised / hardCap) * 100));
   }, [snapshot.totalPublicUsdtRaised]);
 
+  const progressLabel = useMemo(() => {
+    if (raisedPct === 0) return "0.00";
+    if (raisedPct < 0.01) return raisedPct.toFixed(4);
+    return raisedPct.toFixed(2);
+  }, [raisedPct]);
+
+  const progressWidth = useMemo(() => {
+    if (raisedPct > 0 && raisedPct < 0.25) return 0.25;
+    return raisedPct;
+  }, [raisedPct]);
+
   if (activePage === "whitepaper") {
     return <WhitepaperPage onBack={() => setActivePage("home")} />;
   }
@@ -91,9 +102,9 @@ export default function App() {
         <div className="presale-progress">
           <div className="progress-label">
             <span>PRESALE PROGRESS</span>
-            <span>{raisedPct.toFixed(2)}% FILLED</span>
+            <span>{progressLabel}% FILLED</span>
           </div>
-          <div className="progress-bar"><div className="progress-fill" style={{ width: `${raisedPct}%` }} /></div>
+          <div className="progress-bar"><div className="progress-fill" style={{ width: `${progressWidth}%` }} /></div>
           <div className="progress-info">
             <div>
               <span className="small-head">CURRENT PRICE</span>
