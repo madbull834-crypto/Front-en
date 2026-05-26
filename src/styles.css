@@ -1719,10 +1719,39 @@ footer p {
 @media (max-width: 900px) {
   nav {
     padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .nav-links {
+    order: 3;
+    display: flex;
+    width: 100%;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 6px 2px 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links::-webkit-scrollbar {
     display: none;
+  }
+
+  .nav-links a,
+  .nav-link-btn {
+    white-space: nowrap;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .nav-logo {
+    font-size: 22px;
+  }
+
+  .nav-btn {
+    padding: 10px 16px;
+    font-size: 12px;
   }
 
   .section {
