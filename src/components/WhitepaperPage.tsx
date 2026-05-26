@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import SocialLinks from "./SocialLinks";
 
 interface Props {
   onBack: () => void;
@@ -483,6 +484,7 @@ export default function WhitepaperPage({ onBack }: Props) {
 
         <footer className="wp-footer">
           <span>MadBull Whitepaper v1.0 · April 2026 · madbull.world · Confidential</span>
+          <SocialLinks />
           <a className="wp-dl-btn wp-dl-btn--sm" href="/MadBull_Whitepaper-3 (1).pdf" download="MadBull_Whitepaper.pdf">
             ↓ Download PDF
           </a>

@@ -6,6 +6,7 @@ import { CHAIN_NAME, USDT_DECIMALS } from "./config/contracts";
 import { formatAmount, formatTimestamp, shortAddress } from "./lib/format";
 import WhitepaperPage from "./components/WhitepaperPage";
 import StakingPage from "./components/StakingPage";
+import SocialLinks from "./components/SocialLinks";
 
 export default function App() {
   const { wallet, connect, wrongNetwork } = useWallet();
@@ -74,9 +75,11 @@ export default function App() {
           <li><a href="#roadmap">Roadmap</a></li>
           <li><button className="nav-link-btn" onClick={() => setActivePage("whitepaper")}>Whitepaper</button></li>
         </ul>
-        <button className="btn-primary nav-btn" onClick={() => void connect()}>
-          {wallet.connected ? shortAddress(wallet.account) : "Connect"}
-        </button>
+        <div className="nav-actions">
+          <button className="btn-primary nav-btn" onClick={() => void connect()}>
+            {wallet.connected ? shortAddress(wallet.account) : "Connect"}
+          </button>
+        </div>
       </nav>
 
       <header className="hero" id="home">
@@ -338,6 +341,7 @@ export default function App() {
 
       <footer>
         <span className="logo"><span className="logo-red">MAD</span><span className="logo-green">BULL</span></span>
+        <SocialLinks />
         <p>Presale status: {snapshot.saleActive ? "ACTIVE" : "PAUSED"} | Claim: {snapshot.claimEnabled ? "ENABLED" : "DISABLED"}</p>
       </footer>
     </>

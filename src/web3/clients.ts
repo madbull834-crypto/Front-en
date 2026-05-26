@@ -7,7 +7,11 @@ export function getReadProvider() {
   if (!RPC_URL) {
     throw new Error("Missing VITE_RPC_URL in environment");
   }
-  return new JsonRpcProvider(RPC_URL, CHAIN_ID);
+  return new JsonRpcProvider(RPC_URL, CHAIN_ID, {
+    // Some public BSC RPC endpoints intermittently drop batched responses,
+    // which ethers surfaces as "missing response for request".
+    batchMaxCount: 1,
+  });
 }
 
 export async function getBrowserProvider() {

@@ -95,7 +95,7 @@ nav {
 
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 28px;
   list-style: none;
 }
 
@@ -126,6 +126,12 @@ nav {
 
 .nav-link-btn:hover {
   color: var(--bull-green);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .hero {
@@ -1716,11 +1722,48 @@ footer p {
   letter-spacing: 2px;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 14px 0 12px;
+}
+
+.social-links a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-family: "Bebas Neue", cursive;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(78, 201, 78, 0.24);
+  border-radius: 6px;
+  padding: 8px 13px;
+  background: rgba(78, 201, 78, 0.06);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+  color: var(--bull-green);
+  border-color: rgba(78, 201, 78, 0.45);
+  background: rgba(78, 201, 78, 0.12);
+  transform: translateY(-1px);
+}
+
+.social-links--footer {
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   nav {
     padding: 16px 20px;
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .nav-actions {
+    gap: 10px;
   }
 
   .nav-links {

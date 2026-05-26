@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { BLOCK_EXPLORER, STAKING_ADDRESS, USDT_DECIMALS } from "../config/contracts";
 import { useStaking } from "../hooks/useStaking";
 import { formatAmount, formatTimestamp, shortAddress } from "../lib/format";
+import SocialLinks from "./SocialLinks";
 import type { WalletState } from "../types/presale";
 import type { StakingPosition } from "../types/staking";
 
@@ -148,9 +149,11 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
           <span className="logo-red">MAD</span>
           <span className="logo-green">BULL</span>
         </div>
-        <button className="btn-primary nav-btn" onClick={() => void connect()}>
-          {wallet.connected ? shortAddress(wallet.account) : "Connect"}
-        </button>
+        <div className="nav-actions">
+          <button className="btn-primary nav-btn" onClick={() => void connect()}>
+            {wallet.connected ? shortAddress(wallet.account) : "Connect"}
+          </button>
+        </div>
       </nav>
 
       <main className="page-shell">
@@ -539,6 +542,12 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
             )}
           </div>
         </section>
+
+        <footer>
+          <span className="logo"><span className="logo-red">MAD</span><span className="logo-green">BULL</span></span>
+          <SocialLinks />
+          <p>Staking status: {snapshot.depositsLive ? "OPEN" : "PAUSED"}</p>
+        </footer>
       </main>
     </>
   );
