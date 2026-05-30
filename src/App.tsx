@@ -7,6 +7,7 @@ import { formatAmount, formatTimestamp, shortAddress } from "./lib/format";
 import WhitepaperPage from "./components/WhitepaperPage";
 import StakingPage from "./components/StakingPage";
 import SocialLinks from "./components/SocialLinks";
+import BrandLogo from "./components/BrandLogo";
 
 export default function App() {
   const { wallet, connect, wrongNetwork } = useWallet();
@@ -63,8 +64,7 @@ export default function App() {
       <div className="grid-bg" />
       <nav>
         <a href="#home" className="nav-logo">
-          <span className="logo-red">MAD</span>
-          <span className="logo-green">BULL</span>
+          <BrandLogo />
         </a>
         <ul className="nav-links">
           <li><a href="#presale">Presale</a></li>
@@ -86,7 +86,7 @@ export default function App() {
         <div className="hero-glow" />
         <div className="hero-glow2" />
         <div className="hero-tag">MadBull Presale Is Live</div>
-        <h1><span className="logo-red">MAD</span><span className="logo-green">BULL</span></h1>
+        <h1><BrandLogo size="hero" /></h1>
         <p className="hero-sub">MADBULL TOKEN - POWER THE KNOWLEDGE GAME</p>
 
         <div className="hero-stats">
@@ -340,7 +340,7 @@ export default function App() {
       </section>
 
       <footer>
-        <span className="logo"><span className="logo-red">MAD</span><span className="logo-green">BULL</span></span>
+        <span className="logo"><BrandLogo size="footer" /></span>
         <SocialLinks />
         <p>Presale status: {snapshot.saleActive ? "ACTIVE" : "PAUSED"} | Claim: {snapshot.claimEnabled ? "ENABLED" : "DISABLED"}</p>
       </footer>

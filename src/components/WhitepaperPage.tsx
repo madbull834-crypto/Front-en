@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import SocialLinks from "./SocialLinks";
+import BrandLogo from "./BrandLogo";
 
 interface Props {
   onBack: () => void;
@@ -57,7 +58,7 @@ export default function WhitepaperPage({ onBack }: Props) {
         <div className="wp-sidebar-head">
           <button className="wp-back-btn" onClick={onBack}>← Back to Site</button>
           <div className="wp-sidebar-brand">
-            <span className="logo-red">MAD</span><span className="logo-green">BULL</span>
+            <BrandLogo />
           </div>
           <div className="wp-sidebar-version">Whitepaper · Version 1.0 · April 2026</div>
         </div>
@@ -91,7 +92,7 @@ export default function WhitepaperPage({ onBack }: Props) {
         <div className="wp-cover">
           <div className="wp-cover-eyebrow">Whitepaper · Version 1.0 · April 2026</div>
           <h1 className="wp-cover-title">
-            <span className="logo-red">MAD</span><span className="logo-green">BULL</span>
+            <BrandLogo size="whitepaper" />
           </h1>
           <p className="wp-cover-sub">Quantum-Powered Blockchain Ecosystem</p>
           <p className="wp-cover-quote">"Charging Into the Future of Decentralized Innovation"</p>

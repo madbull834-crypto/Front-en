@@ -3,6 +3,7 @@ import { BLOCK_EXPLORER, STAKING_ADDRESS, USDT_DECIMALS } from "../config/contra
 import { useStaking } from "../hooks/useStaking";
 import { formatAmount, formatTimestamp, shortAddress } from "../lib/format";
 import SocialLinks from "./SocialLinks";
+import BrandLogo from "./BrandLogo";
 import type { WalletState } from "../types/presale";
 import type { StakingPosition } from "../types/staking";
 
@@ -146,8 +147,7 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
       <nav>
         <button className="nav-link-btn nav-back" onClick={onBack}>Back To Home</button>
         <div className="nav-logo">
-          <span className="logo-red">MAD</span>
-          <span className="logo-green">BULL</span>
+          <BrandLogo />
         </div>
         <div className="nav-actions">
           <button className="btn-primary nav-btn" onClick={() => void connect()}>
@@ -544,7 +544,7 @@ export default function StakingPage({ wallet, wrongNetwork, connect, onBack }: S
         </section>
 
         <footer>
-          <span className="logo"><span className="logo-red">MAD</span><span className="logo-green">BULL</span></span>
+          <span className="logo"><BrandLogo size="footer" /></span>
           <SocialLinks />
           <p>Staking status: {snapshot.depositsLive ? "OPEN" : "PAUSED"}</p>
         </footer>

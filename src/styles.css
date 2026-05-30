@@ -93,6 +93,87 @@ nav {
   color: #0d6b0d;
 }
 
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.brand-logo-img {
+  width: 46px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: saturate(1.08) contrast(1.04) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.3));
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 56%, rgba(0, 0, 0, 0.86) 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 56%, rgba(0, 0, 0, 0.86) 72%, transparent 100%);
+}
+
+.brand-logo-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.brand-logo--hero {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brand-logo--hero .brand-logo-img {
+  position: static;
+  z-index: auto;
+  width: clamp(150px, 22vw, 230px);
+  height: clamp(128px, 19vw, 196px);
+  opacity: 1;
+  transform: none;
+  mix-blend-mode: normal;
+  filter: saturate(1.12) contrast(1.08) drop-shadow(0 24px 46px rgba(0, 0, 0, 0.42));
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 72%, transparent 100%);
+  animation: logoPresence 7s ease-in-out infinite;
+}
+
+.brand-logo--hero .brand-logo-text {
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5), 0 18px 48px rgba(0, 0, 0, 0.55);
+}
+
+.brand-logo--whitepaper {
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brand-logo--whitepaper .brand-logo-img {
+  position: static;
+  width: clamp(140px, 20vw, 220px);
+  height: clamp(119px, 17vw, 187px);
+  opacity: 1;
+  mix-blend-mode: normal;
+  filter: saturate(1.1) contrast(1.06) drop-shadow(0 22px 40px rgba(0, 0, 0, 0.38));
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 72%, transparent 100%);
+}
+
+.brand-logo--whitepaper .brand-logo-text {
+  text-shadow: 0 16px 42px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes logoPresence {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.012);
+  }
+}
+
 .nav-links {
   display: flex;
   gap: 28px;
