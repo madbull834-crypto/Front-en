@@ -102,7 +102,7 @@ nav {
 }
 
 .brand-logo-img {
-  width: 46px;
+  width: 52px;
   height: 40px;
   flex: 0 0 auto;
   border-radius: 0;
@@ -130,8 +130,8 @@ nav {
 .brand-logo--hero .brand-logo-img {
   position: static;
   z-index: auto;
-  width: clamp(150px, 22vw, 230px);
-  height: clamp(128px, 19vw, 196px);
+  width: clamp(190px, 28vw, 310px);
+  height: clamp(145px, 21vw, 237px);
   opacity: 1;
   transform: none;
   mix-blend-mode: normal;
@@ -152,8 +152,8 @@ nav {
 
 .brand-logo--whitepaper .brand-logo-img {
   position: static;
-  width: clamp(140px, 20vw, 220px);
-  height: clamp(119px, 17vw, 187px);
+  width: clamp(180px, 25vw, 290px);
+  height: clamp(138px, 19vw, 222px);
   opacity: 1;
   mix-blend-mode: normal;
   filter: saturate(1.1) contrast(1.06) drop-shadow(0 22px 40px rgba(0, 0, 0, 0.38));
